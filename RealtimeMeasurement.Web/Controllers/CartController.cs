@@ -7,21 +7,21 @@ using System.Web.Mvc;
 
 namespace RealtimeMeasurement.Web.Controllers
 {
-    public class HomeController : Controller
+    public class CartController : Controller
     {
         IApiMetrics apiMetrics;
-        public HomeController(IApiMetrics apiMetrics)
+        public CartController(IApiMetrics apiMetrics)
         {
             this.apiMetrics = apiMetrics;
         }
         // GET: Home
         public ActionResult Index()
         {
-            this.ViewBag.Title = "Home";
-            this.ViewBag.HomeActive = "active";
+            this.ViewBag.Title = "Cart";
+            this.ViewBag.HomeActive = "";
             this.ViewBag.ProductActive = "";
-            this.ViewBag.CartActive = "";
-            apiMetrics.homePage();
+            this.ViewBag.CartActive = "active";
+            apiMetrics.cartPage();
             return View();
         }
     }

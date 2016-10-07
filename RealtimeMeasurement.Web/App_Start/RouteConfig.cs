@@ -18,6 +18,25 @@ namespace RealtimeMeasurement.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Product",
+                url: "Product/{action}/{id}",
+                defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Cart",
+                url: "Cart/{action}/{id}",
+                defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "MetricAPI",
+                url: "api/metric/{action}/{id}",
+                defaults: new { controller = "Metric", id = UrlParameter.Optional }
+            );
+
         }
     }
 }

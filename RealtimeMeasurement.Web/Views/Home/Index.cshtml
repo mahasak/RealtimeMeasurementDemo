@@ -1,18 +1,40 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+@section DocumentReady {
+    GrafanaDemo.setupInterestEvent();
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        Test
+@section Header {
+<div class="jumbotron">
+    <div class="container">
+        <h1>Home Page</h1>
+        <p>Just a simple landing page !!!</p>
     </div>
-</body>
-</html>
+</div>
+
+}
+
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Huskibear Workshop</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><button id="btnInterest1"  type="button" class="btn btn-default">View details &raquo;</button></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Bearhunter Meetup</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><button id="btnInterest2" type="button" class="btn btn-default">View details &raquo;</button></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Bearchitect Talk Show</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p><button id="btnInterest3" type="button" class="btn btn-default">View details &raquo;</button></p>
+        </div>
+    </div>
+
+    
+
+  

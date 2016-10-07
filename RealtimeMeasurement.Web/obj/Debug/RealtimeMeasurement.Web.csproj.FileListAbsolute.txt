@@ -56,3 +56,11 @@ C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\Mi
 C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\InfluxData.Net.Common.pdb
 C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\InfluxData.Net.InfluxDb.pdb
 C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\Microsoft.Threading.Tasks.xml
+C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\Newtonsoft.Json.dll
+C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\System.Net.Http.Formatting.dll
+C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\System.Web.Http.dll
+C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\System.Web.Http.WebHost.dll
+C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\Newtonsoft.Json.xml
+C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\System.Net.Http.Formatting.xml
+C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\System.Web.Http.xml
+C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Web\bin\System.Web.Http.WebHost.xml

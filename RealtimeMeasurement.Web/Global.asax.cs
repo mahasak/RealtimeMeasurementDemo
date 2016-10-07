@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Metrics;
 using RealtimeMeasurement.Infrastructure.Reporter;
+using System.Web.Http;
+using RealtimeMeasurement.Web.App_Start;
+using Microsoft.Practices.Unity.Mvc;
 
 namespace RealtimeMeasurement.Web
 {
@@ -13,9 +16,14 @@ namespace RealtimeMeasurement.Web
     {
         protected void Application_Start()
         {
+            UnityConfig.RegisterComponents();
+
             AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            
+
+             
+
             Metric.Config
                 .WithHttpEndpoint("http://localhost:1234/")
                   .WithReporting(reports => {

@@ -1,6 +1,9 @@
 using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
+using RealtimeMeasurement.Infrastructure;
+using System.Web.Mvc;
+using Microsoft.Practices.Unity.Mvc;
 
 namespace RealtimeMeasurement.Web.App_Start
 {
@@ -26,6 +29,8 @@ namespace RealtimeMeasurement.Web.App_Start
         }
         #endregion
 
+
+       
         /// <summary>Registers the type mappings with the Unity container.</summary>
         /// <param name="container">The unity container to configure.</param>
         /// <remarks>There is no need to register concrete types such as controllers or API controllers (unless you want to 
@@ -37,6 +42,15 @@ namespace RealtimeMeasurement.Web.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IApiMetrics, ApplicationMetrics>(new ContainerControlledLifetimeManager());
         }
+
+        public static void RegisterComponents()
+        {
+            var container = new UnityContainer();
+            container.RegisterType<IApiMetrics, ApplicationMetrics>(new ContainerControlledLifetimeManager());
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+        }
+        
     }
 }

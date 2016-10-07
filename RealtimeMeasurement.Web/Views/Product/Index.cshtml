@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section DocumentReady {
+    GrafanaDemo.setupBookingEvent();
+}
+
+@section Header {
+<div class="jumbotron">
+    <div class="container">
+        <h1>Product Page</h1>
+        <p>List of your wonderful products !!!</p>
+    </div>
+</div>
+
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img-top" src="http://placehold.it/350x150" alt="Card image cap">
+                <div class="card-block">
+                    <h4 class="card-title">Bearchitect Talk Show</h4>
+                    <p class="card-text">Bearchitect talk show </p>
+                    <button id="btnBooking1" type="button" class="btn btn-primary">Book for $2000</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img-top" src="http://placehold.it/350x150" alt="Card image cap">
+                <div class="card-block">
+                    <h4 class="card-title">Bearhunter Meetup</h4>
+                    <p class="card-text">Meet the bears</p>
+                    <button id="btnBooking2" type="button" class="btn btn-primary">Book for $2000</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img-top" src="http://placehold.it/350x150" alt="Card image cap">
+                <div class="card-block">
+                    <h4 class="card-title">Huskibear Workshop</h4>
+                    <p class="card-text">Go to dark side with Huskibear</p>
+                    <button id="btnBooking3" type="button" class="btn btn-primary">Book for $2000</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+  

@@ -14,11 +14,6 @@ namespace RealtimeMeasurement.Infrastructure.HttpModule
 
         private static readonly Counter responseCounter = Metric.Counter("ResponseCounter", Unit.Calls);
 
-        private static readonly Counter counter = Metric.Counter("ResponseCounter", Unit.Calls);
-        private static readonly Meter meter = Metric.Meter("ResponseCounter", Unit.Calls);
-        private static readonly Timer timer = Metric.Timer("ResponseCounter", Unit.Calls);
-        private static readonly Histogram histogram = Metric.Histogram("ResponseCounter", Unit.Calls);
-
         public void Dispose()
         {
             // Do nothing here
@@ -52,20 +47,7 @@ namespace RealtimeMeasurement.Infrastructure.HttpModule
         private void OnBeginRequest(object sender, EventArgs e)
         {
             requestCounter.Increment();
-
-            counter.Increment("tag", 1);
-            counter.Decrement("tag", 1);
-
-            meter.Mark("tag");
-            meter.Mark("tag", 2);
-
-            timer.StartRecording();
-            timer.EndRecording();
-            timer.Reset();
-
-
-            histogram.Update(100);
-
+            
 
         }
     }

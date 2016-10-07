@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section DocumentReady {
+    GrafanaDemo.setupCartEvent();
+}
+
+@section Header {
+<div class="jumbotron">
+    <div class="container">
+        <h1>Cart Page</h1>
+        <p>Where you win and lose !!!</p>
+    </div>
+</div>
+
+}
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Panel heading</div>
+    <div class="panel-body">
+        <p><button id="btnPayment" type="button" class="btn btn-success">Make Payment</button></p>
+    </div><!-- Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Huskibear Workshop</th>
+                <th>$2000</th>
+                <th><button id="btnCancel1" type="button" class="btn btn-danger">Danger</button></th>
+            </tr>
+            <tr>
+                <th>Bearhunter Meetup</th>
+                <th>$2000</th>
+                <th><button id="btnCancel2" type="button" class="btn btn-danger">Danger</button></th>
+            </tr>
+            <tr>
+                <th>Bearchitect Talk Show</th>
+                <th>$2000</th>
+                <th><button id="btnCancel3" type="button" class="btn btn-danger">Danger</button></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+    
+
+  

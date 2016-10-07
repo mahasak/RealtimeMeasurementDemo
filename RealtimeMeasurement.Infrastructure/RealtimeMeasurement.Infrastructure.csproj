@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationMetrics.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="HttpModule\RequestMeasure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

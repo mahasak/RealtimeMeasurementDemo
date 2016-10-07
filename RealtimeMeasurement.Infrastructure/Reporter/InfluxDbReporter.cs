@@ -63,9 +63,7 @@ namespace RealtimeMeasurement.Infrastructure.Reporter
                             tagName = keyVal[0];
                             tagValue = keyVal[1];
                         }
-
-                        tags.Add(tagName, tagValue);
-
+                        
                         var dataPoint = new Point()
                         {
                             Name = counter.Name,
