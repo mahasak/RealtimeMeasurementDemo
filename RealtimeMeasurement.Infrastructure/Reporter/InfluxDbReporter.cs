@@ -21,7 +21,7 @@ namespace RealtimeMeasurement.Infrastructure.Reporter
         private readonly string password;
         private readonly string database;
 
-        public InfluxDbReporter(string url,string database, string username, string password)
+        public InfluxDbReporter(string url, string database, string username, string password)
         {
             this.url = url;
             this.database = database;
@@ -35,25 +35,38 @@ namespace RealtimeMeasurement.Infrastructure.Reporter
 
             var dataPoints = new List<Point>();
 
-            foreach (var counter in metricsData.Counters)
-            {
-                var counterValue = counter.ValueProvider.GetValue(resetMetric: true);
-                
-                if(counterValue.Items.Length > 0)
-                {
-                    var tags = new Dictionary<string, object>();
-
-                    counterValue.Items.ToList().ForEach(
-                        item => dataPoints.Add(CreateDataPoint(counter.Name, (long)item.Count, CreateTags(item.Item)))
-                    );
-                }
-                else
-                {
-                    dataPoints.Add(CreateDataPoint(counter.Name, (long)counterValue.Count, CreateTags()));
-                }
-            }
+            metricsData.Counters.ToList().ForEach(counter => 
+                ProcessCounter(counter).ForEach(p => 
+                    dataPoints.Add(p))
+            );
 
             var response = await influxDbClient.Client.WriteAsync(this.database, dataPoints);
+        }
+        
+        private List<Point> ProcessCounters(string metricName, CounterValue.SetItem[] counterItems)
+        {
+            var dataPoints = new List<Point>();
+            var tags = new Dictionary<string, object>();
+
+            counterItems.ToList().ForEach(
+                item => dataPoints.Add(CreateDataPoint(metricName, (long)item.Count, CreateTags(item.Item)))
+            );
+            return dataPoints;
+        } 
+
+        private List<Point> ProcessCounter(CounterValueSource counter)
+        {
+            var counterValue = counter.ValueProvider.GetValue(resetMetric: true);
+            var dataPoints = new List<Point>();
+            if (counter.ValueProvider.GetValue().Items.Length > 0)
+            {
+                return ProcessCounters(counter.Name, counterValue.Items);
+            }
+            else
+            {
+                dataPoints.Add(CreateDataPoint(counter.Name, (long)counterValue.Count, CreateTags()));
+                return dataPoints;
+            }
         }
 
         private InfluxDbClient GetInfluxDbClient()
@@ -80,6 +93,7 @@ namespace RealtimeMeasurement.Infrastructure.Reporter
 
             return new Dictionary<string, object>() { { tagName,  tagValue } };
         }
+
         private Point CreateDataPoint(string metricName, long metricValue, Dictionary<string, object> tags)
         {
             return new Point()
