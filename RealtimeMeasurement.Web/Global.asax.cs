@@ -16,14 +16,10 @@ namespace RealtimeMeasurement.Web
     {
         protected void Application_Start()
         {
-            UnityConfig.RegisterComponents();
-
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-             
-
+            
             Metric.Config
                 .WithHttpEndpoint("http://localhost:1234/")
                   .WithReporting(reports => {
