@@ -1,4 +1,4 @@
-﻿using RealtimeMeasurement.Infrastructure;
+﻿using RealtimeMeasurement.Infrastructure.Metrics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +9,23 @@ namespace RealtimeMeasurement.Web.Controllers
 {
     public class CartController : Controller
     {
-        IApiMetrics apiMetrics;
-        public CartController(IApiMetrics apiMetrics)
+        IWebsiteMetric websiteMetric;
+    
+        public CartController(IWebsiteMetric websiteMetric)
         {
-            this.apiMetrics = apiMetrics;
+            this.websiteMetric = websiteMetric;
         }
-        // GET: Home
+
+        // GET: Cart
         public ActionResult Index()
         {
             this.ViewBag.Title = "Cart";
+
             this.ViewBag.HomeActive = "";
             this.ViewBag.ProductActive = "";
             this.ViewBag.CartActive = "active";
-            apiMetrics.cartPage();
+
+            websiteMetric.markWhenCustomerOnCartPage();
             return View();
         }
     }

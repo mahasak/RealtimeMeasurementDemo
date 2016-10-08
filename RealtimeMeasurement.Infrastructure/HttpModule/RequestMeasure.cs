@@ -33,8 +33,8 @@ namespace RealtimeMeasurement.Infrastructure.HttpModule
             HttpContext context = HttpContext.Current;
 
             if (context != null
-                && context.Response != null
-                && context.Response.StatusCode >= 400)
+                        && context.Response != null
+                        && context.Response.StatusCode >= 400)
             {
                 tag = "error";
             }
@@ -47,8 +47,6 @@ namespace RealtimeMeasurement.Infrastructure.HttpModule
         private void OnBeginRequest(object sender, EventArgs e)
         {
             requestCounter.Increment();
-            
-
         }
     }
 }

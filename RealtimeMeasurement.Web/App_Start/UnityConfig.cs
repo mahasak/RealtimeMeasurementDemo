@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
-using RealtimeMeasurement.Infrastructure;
+using RealtimeMeasurement.Infrastructure.Metrics;
 using System.Web.Mvc;
 using Microsoft.Practices.Unity.Mvc;
 
@@ -42,13 +42,13 @@ namespace RealtimeMeasurement.Web.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IApiMetrics, ApplicationMetrics>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IWebsiteMetric, WebsiteMetric>(new ContainerControlledLifetimeManager());
         }
 
         public static void RegisterComponents()
         {
             var container = new UnityContainer();
-            container.RegisterType<IApiMetrics, ApplicationMetrics>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IWebsiteMetric, WebsiteMetric>(new ContainerControlledLifetimeManager());
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
         

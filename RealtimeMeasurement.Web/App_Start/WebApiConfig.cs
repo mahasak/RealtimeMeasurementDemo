@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
-using RealtimeMeasurement.Infrastructure;
+using RealtimeMeasurement.Infrastructure.Metrics;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
@@ -14,7 +14,7 @@ namespace RealtimeMeasurement.Web
         {
             // Web API configuration and services
             var container = new UnityContainer();
-            container.RegisterType<IApiMetrics, ApplicationMetrics>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IWebsiteMetric, WebsiteMetric>(new ContainerControlledLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
 
             // Web API routes

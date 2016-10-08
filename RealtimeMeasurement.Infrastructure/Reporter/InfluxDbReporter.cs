@@ -20,6 +20,7 @@ namespace RealtimeMeasurement.Infrastructure.Reporter
         private readonly string username;
         private readonly string password;
         private readonly string database;
+
         public InfluxDbReporter(string url,string database, string username, string password)
         {
             this.url = url;
@@ -28,17 +29,9 @@ namespace RealtimeMeasurement.Infrastructure.Reporter
             this.password = password;
         }
 
-        public async void RunReport(
-            MetricsData metricsData, 
-            Func<HealthStatus> healthStatus, 
-            CancellationToken token)
+        public async void RunReport(MetricsData metricsData, Func<HealthStatus> healthStatus, CancellationToken token)
         {
-            var influxDbClient = new InfluxDbClient(
-                    this.url,
-                    this.username,
-                    this.password,
-                    InfluxDbVersion.v_1_0_0
-                );
+            var influxDbClient = GetInfluxDbClient();
 
             var dataPoints = new List<Point>();
 
@@ -50,57 +43,52 @@ namespace RealtimeMeasurement.Infrastructure.Reporter
                 {
                     var tags = new Dictionary<string, object>();
 
-                    foreach (var item in counterValue.Items)
-                    {
-                        var keyVal = item.Item.Split(':');
-
-                        var tagName = "item";
-                        var tagValue = item.Item;
-                        long measureValue = (long)item.Count;
-
-                        if (keyVal.Length > 1)
-                        {
-                            tagName = keyVal[0];
-                            tagValue = keyVal[1];
-                        }
-                        
-                        var dataPoint = new Point()
-                        {
-                            Name = counter.Name,
-                            Tags = new Dictionary<string, object>()
-                            {
-                                { tagName, tagValue },
-                            },
-                            Fields = new Dictionary<string, object>()
-                            {
-                                { "value",  measureValue }
-                            },
-                            Timestamp = DateTime.UtcNow
-                        };
-
-                        dataPoints.Add(dataPoint);
-                    }
-
-                    
+                    counterValue.Items.ToList().ForEach(
+                        item => dataPoints.Add(CreateDataPoint(counter.Name, (long)item.Count, CreateTags(item.Item)))
+                    );
                 }
                 else
                 {
-                    var dataPoint = new Point()
-                    {
-                        Name = counter.Name,
-                        Fields = new Dictionary<string, object>()
-                        {
-                            { "value",  (long)counterValue.Count }
-                        },
-                        Timestamp = DateTime.UtcNow
-                    };
-                    dataPoints.Add(dataPoint);
+                    dataPoints.Add(CreateDataPoint(counter.Name, (long)counterValue.Count, CreateTags()));
                 }
             }
+
             var response = await influxDbClient.Client.WriteAsync(this.database, dataPoints);
-            
         }
-            
+
+        private InfluxDbClient GetInfluxDbClient()
+        {
+            return new InfluxDbClient(this.url, this.username, this.password, InfluxDbVersion.v_1_0_0);
+
+        }
+
+        private Dictionary<string, object> CreateTags(string item = "")
+        {
+            if (item.Equals(String.Empty))
+                return new Dictionary<string, object>();
+
+            var keyVal = item.Split(':');
+
+            var tagName = "item";
+            var tagValue = item;
+
+            if (keyVal.Length > 1)
+            {
+                tagName = keyVal[0];
+                tagValue = keyVal[1];
+            }
+
+            return new Dictionary<string, object>() { { tagName,  tagValue } };
+        }
+        private Point CreateDataPoint(string metricName, long metricValue, Dictionary<string, object> tags)
+        {
+            return new Point()
+            {
+                Name = metricName,
+                Fields = new Dictionary<string, object>() { { "value", metricValue } },
+                Tags = tags,
+                Timestamp = DateTime.UtcNow
+            };
+        }
     }
 }
-
