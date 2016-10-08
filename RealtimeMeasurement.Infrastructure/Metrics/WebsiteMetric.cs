@@ -22,15 +22,7 @@ namespace RealtimeMeasurement.Infrastructure.Metrics
         private readonly Counter product = Metric.Counter("OnProductPage", Unit.Calls);
 
         private readonly Counter cart = Metric.Counter("OnCartPage", Unit.Calls);
-
-        public WebsiteMetric Instance
-        {
-            get
-            {
-                return new WebsiteMetric();
-            }
-        }
-
+        
         public void markWhenCustomerInterest(string item)
         {
             interest.Increment(item);
