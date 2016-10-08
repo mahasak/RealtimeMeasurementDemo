@@ -1,7 +1,0 @@
-C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Core\bin\Debug\RealtimeMeasurement.Core.dll
-C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Core\bin\Debug\RealtimeMeasurement.Core.pdb
-C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Core\bin\Debug\Metrics.dll
-C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Core\bin\Debug\Metrics.pdb
-C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Core\bin\Debug\Metrics.xml
-C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Core\obj\Debug\RealtimeMeasurement.Core.dll
-C:\src\bigbear\aspnet-metrics\RealtimeMeasurement\RealtimeMeasurement.Core\obj\Debug\RealtimeMeasurement.Core.pdb
